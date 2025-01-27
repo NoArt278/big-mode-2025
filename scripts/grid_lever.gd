@@ -1,0 +1,82 @@
+extends StaticBody2D
+
+class_name Lever
+
+var power_req : float = 0
+var curr_power : float = 0
+var is_on : bool
+var req_time: float = 5
+var tol_time: float = 20
+@onready var power_req_timer: Timer = $PowerReqTimer
+@onready var tolerance_timer: Timer = $ToleranceTimer
+@onready var wait_timer: Timer = $WaitTimer
+@onready var power_req_label: Label = $PowerReqLabel
+@onready var curr_pow_label: Label = $CurrPowLabel
+@onready var tolerance_bar: ProgressBar = $ToleranceBar
+@onready var power_req_bar: ProgressBar = $PowerReqBar
+
+signal game_over
+signal interacted
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	wait_next()
+
+func interact() -> void:
+	is_on = not(is_on)
+	interacted.emit(is_on)
+
+func check_power() -> void:
+	curr_pow_label.text = str(curr_power)
+	if wait_timer.is_stopped() :
+		if curr_power >= power_req :
+			if power_req_timer.is_stopped() :
+				power_req_timer.start()
+			power_req_timer.paused = false
+			tolerance_timer.stop()
+			tolerance_bar.visible = false
+		else :
+			power_req_timer.paused = true
+			tolerance_bar.visible = true
+			if tolerance_timer.is_stopped() :
+				tolerance_timer.start()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player :
+		body.currLever = self
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is Player and body.currLever == self :
+		body.currLever = null
+
+func next_pow_req() -> void:
+	power_req = randi_range(5, 60)
+	req_time += randf_range(-2,2)
+	req_time = max(req_time, 3)
+	if tol_time > 2 :
+		tol_time -= randf_range(0.01, 0.5)
+		tol_time = max(tol_time, 2)
+	power_req_label.text = str(power_req)
+	power_req_timer.wait_time = req_time
+	tolerance_timer.wait_time = tol_time
+	check_power()
+
+func wait_next() -> void:
+	wait_timer.wait_time = randf_range(2, 5)
+	wait_timer.start()
+
+func _on_power_req_timer_timeout() -> void:
+	power_req = 0
+	power_req_label.text = str(power_req)
+	wait_next()
+
+func _on_tolerance_timer_timeout() -> void:
+	game_over.emit()
+
+func _on_wait_timer_timeout() -> void:
+	next_pow_req()
+
+func _process(delta: float) -> void:
+	power_req_bar.value = (req_time - power_req_timer.time_left) / req_time
+	if not(tolerance_timer.is_stopped()) :
+		tolerance_bar.value = tolerance_timer.time_left / tol_time

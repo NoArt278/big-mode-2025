@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://on0g30s2p8ld"]
+
+[ext_resource type="Script" path="res://scripts/grid_lever.gd" id="1_rn0hj"]
+[ext_resource type="Texture2D" uid="uid://bqalmonvl03c1" path="res://icon.svg" id="1_x6l0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7r26"]
+size = Vector2(60, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxjvg"]
+size = Vector2(200, 200)
+
+[node name="GridLever" type="StaticBody2D"]
+script = ExtResource("1_rn0hj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 1.5)
+scale = Vector2(0.453125, 0.820312)
+texture = ExtResource("1_x6l0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j7r26")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_hxjvg")
+
+[node name="PowerReqTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ToleranceTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PowerReqLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = 59.0
+offset_right = 14.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "0"
+horizontal_alignment = 1
+
+[node name="CurrPowLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -76.0
+offset_right = 20.0
+offset_bottom = -53.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="ToleranceBar" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+offset_left = 40.0
+offset_top = -62.0
+offset_right = 61.0
+offset_bottom = 51.0
+max_value = 1.0
+value = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="PowerReqBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0, 1)
+offset_left = -39.0
+offset_top = -95.0
+offset_right = 40.0
+offset_bottom = -76.0
+max_value = 1.0
+show_percentage = false
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="PowerReqTimer" to="." method="_on_power_req_timer_timeout"]
+[connection signal="timeout" from="ToleranceTimer" to="." method="_on_tolerance_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

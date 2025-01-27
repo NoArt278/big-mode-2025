@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc1023apsbo2g"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
+[ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
+[ext_resource type="PackedScene" uid="uid://on0g30s2p8ld" path="res://scenes/grid_lever.tscn" id="3_rrydj"]
+[ext_resource type="PackedScene" uid="uid://qfdnvc4txd3c" path="res://scenes/player.tscn" id="3_vtta8"]
+
+[node name="MainLevel" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_pbpcb")
+
+[node name="GameTimer" type="Timer" parent="GameManager"]
+wait_time = 180.0
+
+[node name="GridManager" type="Node" parent="."]
+script = ExtResource("2_36q0b")
+
+[node name="GridLever" parent="GridManager" instance=ExtResource("3_rrydj")]
+position = Vector2(558, 541)
+
+[node name="GridLever2" parent="GridManager" instance=ExtResource("3_rrydj")]
+position = Vector2(863, 101)
+
+[node name="GridLever3" parent="GridManager" instance=ExtResource("3_rrydj")]
+position = Vector2(164, 93)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player" parent="." instance=ExtResource("3_vtta8")]
+position = Vector2(553, 304)
