@@ -24,17 +24,20 @@ position = Vector2(231, 115)
 [node name="GridLever2" parent="GridManager" instance=ExtResource("3_rrydj")]
 position = Vector2(918, 112)
 
+[node name="GridLever3" parent="GridManager" instance=ExtResource("3_rrydj")]
+position = Vector2(566, 549)
+
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
+offset_right = 43.0
 offset_bottom = 40.0
 
 [node name="Player" parent="." instance=ExtResource("3_vtta8")]
 position = Vector2(553, 304)
 
 [node name="Generator" parent="." instance=ExtResource("6_3wfg3")]
-position = Vector2(925, 551)
+position = Vector2(994, 550)
 
 [node name="FuelStation" parent="." instance=ExtResource("7_c2aeu")]
 position = Vector2(109, 550)

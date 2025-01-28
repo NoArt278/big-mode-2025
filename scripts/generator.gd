@@ -23,7 +23,8 @@ func interact() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().name.contains("Fuel") and charge < MAX_CHARGE :
-		charge = MAX_CHARGE
+		charge += 20
+		charge = min(charge, MAX_CHARGE)
 		charge_bar.value = charge
 		area.get_parent().queue_free()
 
