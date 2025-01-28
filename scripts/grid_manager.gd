@@ -4,6 +4,7 @@ class_name GridManager
 
 var grids: Array[Lever]
 var active_count: int = 0
+var max_power: int = 100
 @onready var game_manager: GameManager = $"../GameManager"
 const GRID_LEVER = preload("res://scenes/grid_lever.tscn")
 
@@ -25,7 +26,7 @@ func distribute_power(is_on : bool) -> void:
 		active_count -= 1
 	var per_grid_power = 0
 	if active_count > 0 :
-		per_grid_power = 100 / active_count
+		per_grid_power = max_power / active_count
 	for g in grids :
 		if g.is_on :
 			g.curr_power = per_grid_power

@@ -38,22 +38,49 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -14.0
-offset_top = 59.0
+offset_top = -75.0
 offset_right = 14.0
-offset_bottom = 82.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "0"
 horizontal_alignment = 1
 
+[node name="PowerReqBar" type="ProgressBar" parent="PowerReqLabel"]
+modulate = Color(0, 1, 0, 1)
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 54.0
+offset_bottom = -1.0
+max_value = 1.0
+show_percentage = false
+
 [node name="CurrPowLabel" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -76.0
-offset_right = 20.0
-offset_bottom = -53.0
+offset_left = -69.0
+offset_top = 57.0
+offset_right = -29.0
+offset_bottom = 80.0
 text = "0"
 horizontal_alignment = 1
+
+[node name="CurrPowBar" type="ProgressBar" parent="CurrPowLabel"]
+modulate = Color(1, 1, 0, 1)
+offset_left = 10.0
+offset_top = -114.0
+offset_right = 31.0
+offset_bottom = -1.0
+allow_greater = true
+fill_mode = 3
+show_percentage = false
+
+[node name="InteractLabel" type="Label" parent="."]
+visible = false
+offset_left = -74.0
+offset_top = -42.0
+offset_right = 74.0
+offset_bottom = -19.0
+text = "Press 'E' to interact"
 
 [node name="ToleranceBar" type="ProgressBar" parent="."]
 visible = false
@@ -65,15 +92,6 @@ offset_bottom = 51.0
 max_value = 1.0
 value = 1.0
 fill_mode = 3
-show_percentage = false
-
-[node name="PowerReqBar" type="ProgressBar" parent="."]
-modulate = Color(1, 1, 0, 1)
-offset_left = -39.0
-offset_top = -95.0
-offset_right = 40.0
-offset_bottom = -76.0
-max_value = 1.0
 show_percentage = false
 
 [node name="WaitTimer" type="Timer" parent="."]

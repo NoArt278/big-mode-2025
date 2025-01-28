@@ -20,10 +20,10 @@ script = ExtResource("2_36q0b")
 position = Vector2(558, 541)
 
 [node name="GridLever2" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(863, 101)
+position = Vector2(908, 122)
 
 [node name="GridLever3" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(164, 93)
+position = Vector2(196, 122)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3

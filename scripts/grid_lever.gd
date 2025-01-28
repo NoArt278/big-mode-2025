@@ -13,7 +13,9 @@ var tol_time: float = 20
 @onready var power_req_label: Label = $PowerReqLabel
 @onready var curr_pow_label: Label = $CurrPowLabel
 @onready var tolerance_bar: ProgressBar = $ToleranceBar
-@onready var power_req_bar: ProgressBar = $PowerReqBar
+@onready var power_req_bar: ProgressBar = $PowerReqLabel/PowerReqBar
+@onready var curr_pow_bar: ProgressBar = $CurrPowLabel/CurrPowBar
+@onready var interact_label: Label = $InteractLabel
 
 signal game_over
 signal interacted
@@ -28,6 +30,7 @@ func interact() -> void:
 
 func check_power() -> void:
 	curr_pow_label.text = str(curr_power)
+	curr_pow_bar.value = curr_power
 	if wait_timer.is_stopped() :
 		if curr_power >= power_req :
 			if power_req_timer.is_stopped() :
@@ -44,10 +47,13 @@ func check_power() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player :
 		body.currLever = self
+		interact_label.visible = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is Player and body.currLever == self :
-		body.currLever = null
+	if body is Player :
+		if body.currLever == self :
+			body.currLever = null
+		interact_label.visible = false
 
 func next_pow_req() -> void:
 	power_req = randi_range(5, 60)
