@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc1023apsbo2g"]
+[gd_scene load_steps=7 format=3 uid="uid://cc1023apsbo2g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
 [ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
 [ext_resource type="PackedScene" uid="uid://on0g30s2p8ld" path="res://scenes/grid_lever.tscn" id="3_rrydj"]
 [ext_resource type="PackedScene" uid="uid://qfdnvc4txd3c" path="res://scenes/player.tscn" id="3_vtta8"]
+[ext_resource type="PackedScene" uid="uid://bwbaw6bp8fhi0" path="res://scenes/generator.tscn" id="6_3wfg3"]
+[ext_resource type="PackedScene" uid="uid://dy6mdcrnsw343" path="res://scenes/fuel_station.tscn" id="7_c2aeu"]
 
 [node name="MainLevel" type="Node2D"]
 
@@ -17,13 +19,10 @@ wait_time = 180.0
 script = ExtResource("2_36q0b")
 
 [node name="GridLever" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(558, 541)
+position = Vector2(231, 115)
 
 [node name="GridLever2" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(908, 122)
-
-[node name="GridLever3" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(196, 122)
+position = Vector2(918, 112)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -33,3 +32,9 @@ offset_bottom = 40.0
 
 [node name="Player" parent="." instance=ExtResource("3_vtta8")]
 position = Vector2(553, 304)
+
+[node name="Generator" parent="." instance=ExtResource("6_3wfg3")]
+position = Vector2(925, 551)
+
+[node name="FuelStation" parent="." instance=ExtResource("7_c2aeu")]
+position = Vector2(109, 550)

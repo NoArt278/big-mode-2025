@@ -4,7 +4,7 @@ class_name Player
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-var currLever : Lever
+var currInteractable : Interactable
 
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
-	if Input.is_action_just_pressed("interact") and currLever :
-		currLever.interact()
+	if Input.is_action_just_pressed("interact") and currInteractable :
+		currInteractable.interact()
 
 	move_and_slide()

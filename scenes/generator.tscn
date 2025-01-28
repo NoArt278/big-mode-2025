@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwbaw6bp8fhi0"]
+
+[ext_resource type="Script" path="res://scripts/generator.gd" id="1_4fwpa"]
+[ext_resource type="Texture2D" uid="uid://bqalmonvl03c1" path="res://icon.svg" id="1_yujm8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwum8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yujm8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qjgm"]
+size = Vector2(98, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_844bj"]
+size = Vector2(177, 120)
+
+[node name="Generator" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_4fwpa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(0.500002, 0)
+scale = Vector2(0.773438, 0.421875)
+sprite_frames = SubResource("SpriteFrames_qwum8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4qjgm")
+
+[node name="ChargeBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0, 1)
+offset_left = -48.0
+offset_top = -53.0
+offset_right = 49.0
+offset_bottom = -33.0
+value = 100.0
+show_percentage = false
+
+[node name="InteractLabel" type="Label" parent="."]
+visible = false
+offset_left = -73.3333
+offset_top = 32.6667
+offset_right = 74.6667
+offset_bottom = 55.6667
+text = "Press 'E' to interact"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_844bj")
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

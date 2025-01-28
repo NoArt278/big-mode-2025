@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Interactable
 
 class_name Lever
 
@@ -15,13 +15,13 @@ var tol_time: float = 20
 @onready var tolerance_bar: ProgressBar = $ToleranceBar
 @onready var power_req_bar: ProgressBar = $PowerReqLabel/PowerReqBar
 @onready var curr_pow_bar: ProgressBar = $CurrPowLabel/CurrPowBar
-@onready var interact_label: Label = $InteractLabel
 
 signal game_over
 signal interacted
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	wait_next()
 
 func interact() -> void:
@@ -43,17 +43,6 @@ func check_power() -> void:
 			tolerance_bar.visible = true
 			if tolerance_timer.is_stopped() :
 				tolerance_timer.start()
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player :
-		body.currLever = self
-		interact_label.visible = true
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is Player :
-		if body.currLever == self :
-			body.currLever = null
-		interact_label.visible = false
 
 func next_pow_req() -> void:
 	power_req = randi_range(5, 60)
