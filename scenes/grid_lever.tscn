@@ -10,6 +10,7 @@ size = Vector2(60, 105)
 size = Vector2(200, 200)
 
 [node name="GridLever" type="StaticBody2D"]
+process_mode = 1
 script = ExtResource("1_rn0hj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

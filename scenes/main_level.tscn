@@ -1,43 +1,173 @@
-[gd_scene load_steps=7 format=3 uid="uid://cc1023apsbo2g"]
+[gd_scene load_steps=8 format=3 uid="uid://cc1023apsbo2g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
 [ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
-[ext_resource type="PackedScene" uid="uid://on0g30s2p8ld" path="res://scenes/grid_lever.tscn" id="3_rrydj"]
 [ext_resource type="PackedScene" uid="uid://qfdnvc4txd3c" path="res://scenes/player.tscn" id="3_vtta8"]
 [ext_resource type="PackedScene" uid="uid://bwbaw6bp8fhi0" path="res://scenes/generator.tscn" id="6_3wfg3"]
 [ext_resource type="PackedScene" uid="uid://dy6mdcrnsw343" path="res://scenes/fuel_station.tscn" id="7_c2aeu"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_jrsoo"]
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvstb"]
+font_size = 32
+
 [node name="MainLevel" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("1_pbpcb")
 
 [node name="GameTimer" type="Timer" parent="GameManager"]
-wait_time = 180.0
+process_mode = 1
+wait_time = 60.0
+one_shot = true
 
 [node name="GridManager" type="Node" parent="."]
 script = ExtResource("2_36q0b")
 
-[node name="GridLever" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(231, 115)
+[node name="Pos1" type="Node2D" parent="GridManager"]
+position = Vector2(188, 115)
 
-[node name="GridLever2" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(918, 112)
+[node name="Pos2" type="Node2D" parent="GridManager"]
+position = Vector2(393, 549)
 
-[node name="GridLever3" parent="GridManager" instance=ExtResource("3_rrydj")]
-position = Vector2(566, 549)
+[node name="Pos3" type="Node2D" parent="GridManager"]
+position = Vector2(575, 115)
 
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 43.0
-offset_bottom = 40.0
+[node name="Pos4" type="Node2D" parent="GridManager"]
+position = Vector2(708, 549)
+
+[node name="Pos5" type="Node2D" parent="GridManager"]
+position = Vector2(959, 115)
 
 [node name="Player" parent="." instance=ExtResource("3_vtta8")]
-position = Vector2(553, 304)
+position = Vector2(578, 304)
 
 [node name="Generator" parent="." instance=ExtResource("6_3wfg3")]
 position = Vector2(994, 550)
 
 [node name="FuelStation" parent="." instance=ExtResource("7_c2aeu")]
 position = Vector2(109, 550)
+
+[node name="MainMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 651.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartBtn" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -256.0
+offset_right = 53.0
+offset_bottom = -225.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "START GAME"
+
+[node name="Label" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -49.5
+offset_right = 91.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "TITLE"
+label_settings = SubResource("LabelSettings_jrsoo")
+
+[node name="HUD" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 651.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerText" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 493.0
+offset_top = 20.0
+offset_right = 548.0
+offset_bottom = 65.0
+grow_horizontal = 2
+text = "180"
+label_settings = SubResource("LabelSettings_kvstb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndScreen" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 651.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndText" type="Label" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -49.5
+offset_right = 91.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "TITLE"
+label_settings = SubResource("LabelSettings_jrsoo")
+
+[node name="RetryButton" type="Button" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = 70.5
+offset_right = 44.0
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY AGAIN"
+
+[connection signal="timeout" from="GameManager/GameTimer" to="GameManager" method="_on_game_timer_timeout"]
+[connection signal="pressed" from="MainMenu/StartBtn" to="GameManager" method="_on_start_btn_pressed"]
+[connection signal="pressed" from="EndScreen/RetryButton" to="GameManager" method="_on_retry_button_pressed"]

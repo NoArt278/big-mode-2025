@@ -3,6 +3,8 @@ extends Node
 class_name GridManager
 
 var grids: Array[Lever]
+var pos_list: Array[Node2D]
+var grid_count: int = 3
 var active_count: int = 0
 var max_power: int = 100
 var pow_increase: int = 50
@@ -11,15 +13,21 @@ var pow_increase: int = 50
 const GRID_LEVER = preload("res://scenes/grid_lever.tscn")
 
 func _ready() -> void:
-	start_game()
+	pos_list.append_array(get_children())
+	generator.generator.connect(change_max_pow)
 
 func start_game() -> void:
-	var children = get_children()
-	grids.append_array(children)
-	for g in grids :
+	if grids.size() > 0 :
+		for g in grids :
+			g.queue_free()
+		grids.clear()
+	for i in grid_count :
+		var g = GRID_LEVER.instantiate()
+		pos_list[i].add_child(g)
+		g.position = Vector2.ZERO
 		g.interacted.connect(switch_lever)
 		g.game_over.connect(game_manager.game_over)
-	generator.generator.connect(change_max_pow)
+		grids.append(g)
 
 func change_max_pow(is_on: bool) -> void:
 	if is_on :
