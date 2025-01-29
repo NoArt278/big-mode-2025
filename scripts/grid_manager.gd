@@ -21,6 +21,7 @@ func start_game() -> void:
 		for g in grids :
 			g.queue_free()
 		grids.clear()
+	generator.charge = generator.MAX_CHARGE
 	for i in grid_count :
 		var g = GRID_LEVER.instantiate()
 		pos_list[i].add_child(g)
