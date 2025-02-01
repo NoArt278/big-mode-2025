@@ -4,7 +4,7 @@ class_name GridManager
 
 var grids: Array[Lever]
 var pos_list: Array[Node2D]
-var grid_count: int = 3
+var grid_count: int = 5
 var active_count: int = 0
 var max_power: int = 100
 var pow_increase: int = 50
@@ -21,7 +21,8 @@ func start_game() -> void:
 		for g in grids :
 			g.queue_free()
 		grids.clear()
-	generator.charge = generator.MAX_CHARGE
+	generator.reset()
+	active_count = 0
 	for i in grid_count :
 		var g = GRID_LEVER.instantiate()
 		pos_list[i].add_child(g)

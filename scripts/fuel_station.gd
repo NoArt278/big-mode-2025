@@ -4,10 +4,12 @@ const FUEL = preload("res://scenes/fuel.tscn")
 var curr_player : Player
 
 func interact() -> void:
-	var new_fuel = FUEL.instantiate()
-	curr_player.add_child(new_fuel)
-	var fuel_tween = new_fuel.create_tween()
-	fuel_tween.tween_property(new_fuel, "position", Vector2(0, -50), 0.2)
+	if not(curr_player.holdingFuel) :
+		var new_fuel = FUEL.instantiate()
+		curr_player.add_child(new_fuel)
+		curr_player.holdingFuel = true
+		var fuel_tween = new_fuel.create_tween()
+		fuel_tween.tween_property(new_fuel, "position", Vector2(0, -50), 0.2)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player :

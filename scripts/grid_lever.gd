@@ -52,11 +52,11 @@ func check_power() -> void:
 				tolerance_timer.start()
 
 func next_pow_req() -> void:
-	power_req = randi_range(5, 60)
-	req_time += randf_range(-2,2)
+	power_req = randi_range(5, 40) + randi_range(0, 2) * (Globals.curr_day - 1)
+	req_time += randf_range(-2,2) * (Globals.curr_day - 1)
 	req_time = max(req_time, 3)
 	if tol_time > 2 :
-		tol_time -= randf_range(0.01, 0.5)
+		tol_time -= randf_range(0.01, 0.5)  * ((Globals.curr_day - 1) / 2)
 		tol_time = max(tol_time, 2)
 	power_req_label.text = str(power_req)
 	power_req_timer.wait_time = req_time
@@ -64,7 +64,7 @@ func next_pow_req() -> void:
 	check_power()
 
 func wait_next() -> void:
-	wait_timer.wait_time = randf_range(2, 5)
+	wait_timer.wait_time = randf_range(2, 10)
 	wait_timer.start()
 
 func _on_power_req_timer_timeout() -> void:

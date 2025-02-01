@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 class_name Player
 
-const SPEED = 300.0
+const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 var currInteractable : Interactable
+var holdingFuel : bool = false
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func change_draw_order(draw_order : int) :
@@ -17,7 +18,7 @@ func _physics_process(_delta: float) -> void:
 	if x_dir:
 		velocity.x = x_dir * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED/4)
 	if y_dir:
 		velocity.y = y_dir * SPEED
 	else:

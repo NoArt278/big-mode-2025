@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc1023apsbo2g"]
+[gd_scene load_steps=13 format=3 uid="uid://cc1023apsbo2g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
 [ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
+[ext_resource type="Texture2D" uid="uid://bfl0jelj3amxc" path="res://assets/speaker.png" id="2_ct6ea"]
 [ext_resource type="PackedScene" uid="uid://qfdnvc4txd3c" path="res://scenes/player.tscn" id="3_vtta8"]
 [ext_resource type="PackedScene" uid="uid://bwbaw6bp8fhi0" path="res://scenes/generator.tscn" id="6_3wfg3"]
 [ext_resource type="Texture2D" uid="uid://cqkngdca1a4d8" path="res://assets/background.png" id="6_32qcs"]
@@ -14,7 +15,7 @@ size = Vector2(1142, 312)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jrsoo"]
 font = ExtResource("8_xavcb")
-font_size = 72
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvstb"]
 font = ExtResource("8_xavcb")
@@ -24,7 +25,7 @@ font_size = 32
 
 [node name="Background" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
+[node name="BgSprite" type="Sprite2D" parent="Background"]
 position = Vector2(577.5, 326.5)
 scale = Vector2(0.322029, 0.300735)
 texture = ExtResource("6_32qcs")
@@ -34,6 +35,11 @@ texture = ExtResource("6_32qcs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
 position = Vector2(574, 146)
 shape = SubResource("RectangleShape2D_8sqqq")
+
+[node name="Speaker" type="Sprite2D" parent="Background"]
+position = Vector2(69.082, 43.045)
+scale = Vector2(0.245276, 0.245276)
+texture = ExtResource("2_ct6ea")
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 3
@@ -48,7 +54,7 @@ one_shot = true
 position = Vector2(578, 304)
 
 [node name="Generator" parent="." instance=ExtResource("6_3wfg3")]
-position = Vector2(994, 550)
+position = Vector2(1016.34, 517.08)
 
 [node name="FuelStation" parent="." instance=ExtResource("7_c2aeu")]
 position = Vector2(109, 550)
@@ -81,6 +87,7 @@ position = Vector2(959, 221.145)
 
 [node name="MainMenu" type="Control" parent="."]
 process_mode = 3
+z_index = 20
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -129,6 +136,7 @@ label_settings = SubResource("LabelSettings_jrsoo")
 
 [node name="HUD" type="Control" parent="."]
 visible = false
+z_index = 20
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -137,13 +145,28 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TimerText" type="Label" parent="HUD"]
 layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -114.0
+offset_top = 7.0
+offset_right = -25.0
+offset_bottom = 66.0
+grow_horizontal = 0
+text = "180"
+label_settings = SubResource("LabelSettings_kvstb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DayText" type="Label" parent="HUD"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 493.0
-offset_top = 20.0
-offset_right = 548.0
-offset_bottom = 65.0
+offset_left = -44.5
+offset_top = 17.0
+offset_right = 44.5
+offset_bottom = 76.0
 grow_horizontal = 2
 text = "180"
 label_settings = SubResource("LabelSettings_kvstb")
@@ -153,6 +176,7 @@ vertical_alignment = 1
 [node name="EndScreen" type="Control" parent="."]
 process_mode = 3
 visible = false
+z_index = 20
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -199,6 +223,72 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("8_xavcb")
 text = "PLAY AGAIN"
 
+[node name="UpgradeScreen" type="Control" parent="."]
+process_mode = 3
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 651.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="UpgradeScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndText" type="Label" parent="UpgradeScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -155.5
+offset_top = 23.0
+offset_right = 155.5
+offset_bottom = 122.0
+grow_horizontal = 2
+text = "UPGRADE"
+label_settings = SubResource("LabelSettings_jrsoo")
+
+[node name="FuelUpgrade" type="Button" parent="UpgradeScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.5
+offset_right = -66.0
+offset_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_xavcb")
+text = "+5 ON FUEL REFILL"
+
+[node name="GeneratorUpgrade" type="Button" parent="UpgradeScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 84.0
+offset_top = -150.5
+offset_right = 318.0
+offset_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_xavcb")
+text = "+20 Generator 
+charge"
+
 [connection signal="timeout" from="GameManager/GameTimer" to="GameManager" method="_on_game_timer_timeout"]
 [connection signal="pressed" from="MainMenu/StartBtn" to="GameManager" method="_on_start_btn_pressed"]
 [connection signal="pressed" from="EndScreen/RetryButton" to="GameManager" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="UpgradeScreen/FuelUpgrade" to="Generator" method="_on_fuel_upgrade_pressed"]
+[connection signal="pressed" from="UpgradeScreen/GeneratorUpgrade" to="Generator" method="_on_generator_upgrade_pressed"]
