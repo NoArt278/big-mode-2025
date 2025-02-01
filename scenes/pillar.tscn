@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfeheen03a2r0"]
+
+[ext_resource type="Texture2D" uid="uid://c6ych7qrdwrdn" path="res://assets/pillar.png" id="1_aepfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04jy1"]
+size = Vector2(104, 139)
+
+[node name="Pillar" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.297439, 0.297439)
+texture = ExtResource("1_aepfr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 92)
+shape = SubResource("RectangleShape2D_04jy1")

@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc1023apsbo2g"]
+[gd_scene load_steps=11 format=3 uid="uid://cc1023apsbo2g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
 [ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
 [ext_resource type="PackedScene" uid="uid://qfdnvc4txd3c" path="res://scenes/player.tscn" id="3_vtta8"]
 [ext_resource type="PackedScene" uid="uid://bwbaw6bp8fhi0" path="res://scenes/generator.tscn" id="6_3wfg3"]
+[ext_resource type="Texture2D" uid="uid://cqkngdca1a4d8" path="res://assets/background.png" id="6_32qcs"]
 [ext_resource type="PackedScene" uid="uid://dy6mdcrnsw343" path="res://scenes/fuel_station.tscn" id="7_c2aeu"]
+[ext_resource type="PackedScene" uid="uid://cfeheen03a2r0" path="res://scenes/pillar.tscn" id="7_klosk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8sqqq"]
+size = Vector2(1142, 246)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jrsoo"]
 font_size = 72
@@ -13,6 +18,19 @@ font_size = 72
 font_size = 32
 
 [node name="MainLevel" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(577.5, 326.5)
+scale = Vector2(0.322029, 0.300735)
+texture = ExtResource("6_32qcs")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2(574, 113)
+shape = SubResource("RectangleShape2D_8sqqq")
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 3
@@ -23,32 +41,40 @@ process_mode = 1
 wait_time = 60.0
 one_shot = true
 
-[node name="GridManager" type="Node" parent="."]
-script = ExtResource("2_36q0b")
-
-[node name="Pos1" type="Node2D" parent="GridManager"]
-position = Vector2(188, 115)
-
-[node name="Pos2" type="Node2D" parent="GridManager"]
-position = Vector2(393, 549)
-
-[node name="Pos3" type="Node2D" parent="GridManager"]
-position = Vector2(575, 115)
-
-[node name="Pos4" type="Node2D" parent="GridManager"]
-position = Vector2(708, 549)
-
-[node name="Pos5" type="Node2D" parent="GridManager"]
-position = Vector2(959, 115)
-
 [node name="Player" parent="." instance=ExtResource("3_vtta8")]
 position = Vector2(578, 304)
+
+[node name="Pillar" parent="." instance=ExtResource("7_klosk")]
+position = Vector2(391, 356)
+scale = Vector2(1.2, 1.2)
+
+[node name="Pillar2" parent="." instance=ExtResource("7_klosk")]
+position = Vector2(791, 356)
+scale = Vector2(1.2, 1.2)
 
 [node name="Generator" parent="." instance=ExtResource("6_3wfg3")]
 position = Vector2(994, 550)
 
 [node name="FuelStation" parent="." instance=ExtResource("7_c2aeu")]
 position = Vector2(109, 550)
+
+[node name="GridManager" type="Node" parent="."]
+script = ExtResource("2_36q0b")
+
+[node name="Pos1" type="Node2D" parent="GridManager"]
+position = Vector2(188, 221.145)
+
+[node name="Pos2" type="Node2D" parent="GridManager"]
+position = Vector2(390, 459.56)
+
+[node name="Pos3" type="Node2D" parent="GridManager"]
+position = Vector2(575, 221.145)
+
+[node name="Pos4" type="Node2D" parent="GridManager"]
+position = Vector2(793, 459.56)
+
+[node name="Pos5" type="Node2D" parent="GridManager"]
+position = Vector2(959, 221.145)
 
 [node name="MainMenu" type="Control" parent="."]
 process_mode = 3

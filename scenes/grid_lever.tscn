@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://on0g30s2p8ld"]
 
 [ext_resource type="Script" path="res://scripts/grid_lever.gd" id="1_rn0hj"]
-[ext_resource type="Texture2D" uid="uid://bqalmonvl03c1" path="res://icon.svg" id="1_x6l0i"]
+[ext_resource type="Texture2D" uid="uid://deihad86xcq3" path="res://assets/lever_off.png" id="2_bwuoy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7r26"]
 size = Vector2(60, 105)
@@ -14,10 +14,9 @@ process_mode = 1
 script = ExtResource("1_rn0hj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(0, 1.5)
-scale = Vector2(0.453125, 0.820312)
-texture = ExtResource("1_x6l0i")
+position = Vector2(-1.055, 3.701)
+scale = Vector2(0.218254, 0.218254)
+texture = ExtResource("2_bwuoy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j7r26")

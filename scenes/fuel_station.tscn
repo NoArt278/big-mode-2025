@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy6mdcrnsw343"]
 
 [ext_resource type="Script" path="res://scripts/fuel_station.gd" id="1_bni6l"]
-[ext_resource type="Texture2D" uid="uid://bqalmonvl03c1" path="res://icon.svg" id="2_056cm"]
+[ext_resource type="Texture2D" uid="uid://h6m3vht8ab3x" path="res://assets/fuelstack.png" id="2_nv4k2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0laj"]
 size = Vector2(90, 90)
@@ -16,8 +16,9 @@ script = ExtResource("1_bni6l")
 shape = SubResource("RectangleShape2D_q0laj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6875, 0.693866)
-texture = ExtResource("2_056cm")
+position = Vector2(-4, -11)
+scale = Vector2(0.168268, 0.169826)
+texture = ExtResource("2_nv4k2")
 
 [node name="Area2D" type="Area2D" parent="."]
 

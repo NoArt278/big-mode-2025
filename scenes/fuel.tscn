@@ -1,14 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://ce7ey0srl7m10"]
 
-[ext_resource type="Texture2D" uid="uid://bqalmonvl03c1" path="res://icon.svg" id="1_teufl"]
+[ext_resource type="Texture2D" uid="uid://dju8tahwjc64j" path="res://assets/fuel.png" id="1_ehg0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xihi"]
 size = Vector2(126.667, 123.333)
 
 [node name="Fuel" type="Sprite2D"]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_teufl")
+scale = Vector2(0.0740418, 0.0727789)
+texture = ExtResource("1_ehg0a")
 
 [node name="Area2D" type="Area2D" parent="."]
 
