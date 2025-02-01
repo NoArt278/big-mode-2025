@@ -16,9 +16,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player :
 		body.currInteractable = self
 		interact_label.visible = true
+		body.change_draw_order(10)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player :
 		if body.currInteractable == self :
 			body.currInteractable = null
+			body.change_draw_order(0)
 		interact_label.visible = false

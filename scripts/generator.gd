@@ -4,6 +4,7 @@ class_name Generator
 
 @onready var charge_bar: ProgressBar = $ChargeBar
 @onready var tick_timer: Timer = $TickTimer
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 const MAX_CHARGE: int = 100
 var deplete_speed: float = 3
 var is_on: bool = false
@@ -19,6 +20,10 @@ func interact() -> void:
 		tick_timer.start()
 	else :
 		tick_timer.stop()
+	if is_on :
+		animated_sprite_2d.play("on")
+	else :
+		animated_sprite_2d.play("off")
 	generator.emit(is_on)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

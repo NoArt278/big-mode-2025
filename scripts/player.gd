@@ -7,6 +7,9 @@ const JUMP_VELOCITY = -400.0
 var currInteractable : Interactable
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+func change_draw_order(draw_order : int) :
+	sprite_2d.z_index = draw_order
+
 func _physics_process(_delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var x_dir := Input.get_axis("left", "right")

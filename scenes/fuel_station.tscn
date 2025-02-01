@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy6mdcrnsw343"]
+[gd_scene load_steps=7 format=3 uid="uid://dy6mdcrnsw343"]
 
 [ext_resource type="Script" path="res://scripts/fuel_station.gd" id="1_bni6l"]
 [ext_resource type="Texture2D" uid="uid://h6m3vht8ab3x" path="res://assets/fuelstack.png" id="2_nv4k2"]
+[ext_resource type="FontFile" uid="uid://rnmua5wxwaqg" path="res://assets/Kubeon-Mono Bold.otf" id="3_o31qh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0laj"]
 size = Vector2(90, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbrdw"]
 size = Vector2(186, 175)
+
+[sub_resource type="LabelSettings" id="LabelSettings_51b03"]
+font = ExtResource("3_o31qh")
+font_size = 10
 
 [node name="FuelStation" type="StaticBody2D"]
 script = ExtResource("1_bni6l")
@@ -27,8 +32,9 @@ shape = SubResource("RectangleShape2D_nbrdw")
 
 [node name="InteractLabel" type="Label" parent="."]
 visible = false
-offset_left = -74.0
-offset_top = -74.0
-offset_right = 74.0
-offset_bottom = -51.0
+offset_left = -83.0
+offset_top = -68.0
+offset_right = 84.0
+offset_bottom = -45.0
 text = "Press 'E' to interact"
+label_settings = SubResource("LabelSettings_51b03")

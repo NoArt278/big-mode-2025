@@ -15,6 +15,9 @@ var tol_time: float = 20
 @onready var tolerance_bar: ProgressBar = $ToleranceBar
 @onready var power_req_bar: ProgressBar = $PowerReqLabel/PowerReqBar
 @onready var curr_pow_bar: ProgressBar = $CurrPowLabel/CurrPowBar
+@onready var sprite_2d: Sprite2D = $Sprite2D
+const LEVER_OFF = preload("res://assets/lever_off.png")
+const LEVER_ON = preload("res://assets/lever_on.png")
 
 signal game_over
 signal interacted
@@ -26,6 +29,10 @@ func _ready() -> void:
 
 func interact() -> void:
 	is_on = not(is_on)
+	if is_on :
+		sprite_2d.texture = LEVER_ON
+	else :
+		sprite_2d.texture = LEVER_OFF
 	interacted.emit(is_on)
 
 func check_power() -> void:

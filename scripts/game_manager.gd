@@ -10,9 +10,13 @@ class_name GameManager
 @onready var hud: Control = $"../HUD"
 @onready var main_menu: Control = $"../MainMenu"
 
+func _ready() -> void:
+	get_tree().paused = true
+
 func start_game() -> void:
 	end_screen.visible = false
 	hud.visible = true
+	get_tree().paused = false
 	grid_manager.start_game()
 	game_timer.start()
 
