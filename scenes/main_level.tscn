@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cc1023apsbo2g"]
+[gd_scene load_steps=14 format=3 uid="uid://cc1023apsbo2g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
 [ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
 [ext_resource type="Texture2D" uid="uid://bfl0jelj3amxc" path="res://assets/speaker.png" id="2_ct6ea"]
 [ext_resource type="PackedScene" uid="uid://qfdnvc4txd3c" path="res://scenes/player.tscn" id="3_vtta8"]
+[ext_resource type="AudioStream" uid="uid://dhmt34cw7mos1" path="res://assets/trippy_toe.mp3" id="4_0b2b4"]
 [ext_resource type="PackedScene" uid="uid://bwbaw6bp8fhi0" path="res://scenes/generator.tscn" id="6_3wfg3"]
 [ext_resource type="Texture2D" uid="uid://cqkngdca1a4d8" path="res://assets/background.png" id="6_32qcs"]
 [ext_resource type="PackedScene" uid="uid://dy6mdcrnsw343" path="res://scenes/fuel_station.tscn" id="7_c2aeu"]
@@ -49,6 +50,10 @@ script = ExtResource("1_pbpcb")
 process_mode = 1
 wait_time = 60.0
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameManager"]
+stream = ExtResource("4_0b2b4")
+autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("3_vtta8")]
 position = Vector2(578, 304)
