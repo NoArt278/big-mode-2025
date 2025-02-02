@@ -9,6 +9,9 @@ class_name Generator
 @onready var fuel_upgrade: Button = $"../UpgradeScreen/FuelUpgrade"
 @onready var generator_upgrade: Button = $"../UpgradeScreen/GeneratorUpgrade"
 @onready var charge_label: Label = $ChargeBar/ChargeLabel
+@onready var refuel_sound: AudioStreamPlayer2D = $RefuelSound
+@onready var on_sound: AudioStreamPlayer2D = $OnSound
+@onready var off_sound: AudioStreamPlayer2D = $OffSound
 var max_charge: float = 100
 var deplete_speed: float = 3
 var is_on: bool = false
@@ -26,16 +29,17 @@ func interact() -> void:
 		is_on = false
 	if is_on :
 		tick_timer.start()
-	else :
-		tick_timer.stop()
-	if is_on :
+		on_sound.play()
 		animated_sprite_2d.play("on")
 	else :
+		tick_timer.stop()
+		off_sound.play()
 		animated_sprite_2d.play("off")
 	generator.emit(is_on)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().name.contains("Fuel") and charge < max_charge :
+		refuel_sound.play()
 		charge += fuel_refill_charge
 		charge = min(charge, max_charge)
 		charge_bar.value = charge

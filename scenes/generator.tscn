@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwbaw6bp8fhi0"]
+[gd_scene load_steps=12 format=3 uid="uid://bwbaw6bp8fhi0"]
 
 [ext_resource type="Script" path="res://scripts/generator.gd" id="1_4fwpa"]
 [ext_resource type="FontFile" uid="uid://rnmua5wxwaqg" path="res://assets/Kubeon-Mono Bold.otf" id="2_mku76"]
 [ext_resource type="Texture2D" uid="uid://67ju6s5rmqtp" path="res://assets/generator_off.png" id="2_xbjj3"]
 [ext_resource type="Texture2D" uid="uid://b4y1owxfwaun6" path="res://assets/generator_on.png" id="3_qxtuy"]
+[ext_resource type="AudioStream" uid="uid://bqrvw3t51yfj1" path="res://assets/sfx/powerUp.wav" id="5_7h347"]
+[ext_resource type="AudioStream" uid="uid://dqx50pqta8klg" path="res://assets/sfx/continuousspark.wav" id="6_tpbec"]
+[ext_resource type="AudioStream" uid="uid://j2jagtfnlm7b" path="res://assets/sfx/spark.wav" id="6_uf1sx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qjgm"]
 size = Vector2(98, 54)
@@ -84,6 +87,15 @@ offset_right = 83.6667
 offset_bottom = 55.6667
 text = "Press 'E' to interact"
 label_settings = SubResource("LabelSettings_7h2qd")
+
+[node name="RefuelSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7h347")
+
+[node name="OnSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tpbec")
+
+[node name="OffSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_uf1sx")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

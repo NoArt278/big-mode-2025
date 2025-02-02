@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://on0g30s2p8ld"]
+[gd_scene load_steps=13 format=3 uid="uid://on0g30s2p8ld"]
 
 [ext_resource type="Script" path="res://scripts/grid_lever.gd" id="1_rn0hj"]
 [ext_resource type="Texture2D" uid="uid://deihad86xcq3" path="res://assets/lever_off.png" id="2_bwuoy"]
 [ext_resource type="FontFile" uid="uid://rnmua5wxwaqg" path="res://assets/Kubeon-Mono Bold.otf" id="3_5va48"]
+[ext_resource type="AudioStream" uid="uid://cl6wfgqjbf7c7" path="res://assets/sfx/click.4.ogg" id="4_abnmy"]
 
 [sub_resource type="Animation" id="Animation_smi3a"]
 resource_name = "blink"
@@ -148,9 +149,9 @@ label_settings = SubResource("LabelSettings_guckp")
 visible = false
 modulate = Color(1, 0, 0, 1)
 offset_left = 40.0
-offset_top = -62.0
+offset_top = -57.0
 offset_right = 61.0
-offset_bottom = 51.0
+offset_bottom = 56.0
 max_value = 1.0
 value = 1.0
 fill_mode = 3
@@ -158,6 +159,9 @@ show_percentage = false
 
 [node name="WaitTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_abnmy")
 
 [connection signal="timeout" from="PowerReqTimer" to="." method="_on_power_req_timer_timeout"]
 [connection signal="timeout" from="ToleranceTimer" to="." method="_on_tolerance_timer_timeout"]

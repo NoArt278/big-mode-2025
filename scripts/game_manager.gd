@@ -12,6 +12,7 @@ class_name GameManager
 @onready var retry_button: Button = $"../EndScreen/RetryButton"
 @onready var main_menu: Control = $"../MainMenu"
 @onready var generator: Generator = $"../Generator"
+@onready var tutorial: Control = $"../Tutorial"
 var just_won : bool = false
 
 func _ready() -> void:
@@ -37,7 +38,7 @@ func game_over() -> void:
 	get_tree().paused = true
 
 func win() -> void:
-	end_text.text = "DAY " + str(Globals.curr_day) + " SUCCESS"
+	end_text.text = "DAY " + str(Globals.curr_day) + " FINISHED"
 	retry_button.text = "NEXT DAY"
 	Globals.curr_day += 1
 	end_screen.visible = true
@@ -61,3 +62,11 @@ func _on_retry_button_pressed() -> void:
 	else :
 		get_tree().paused = false
 		get_tree().reload_current_scene()
+
+func _on_tutorial_btn_pressed() -> void:
+	main_menu.visible = false
+	tutorial.visible = true
+
+func _on_back_to_main_pressed() -> void:
+	main_menu.visible = true
+	tutorial.visible = false

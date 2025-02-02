@@ -17,6 +17,7 @@ var tol_time: float = 20
 @onready var curr_pow_bar: ProgressBar = $CurrPowLabel/CurrPowBar
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var click_sound: AudioStreamPlayer2D = $ClickSound
 const LEVER_OFF = preload("res://assets/lever_off.png")
 const LEVER_ON = preload("res://assets/lever_on.png")
 
@@ -29,6 +30,7 @@ func _ready() -> void:
 	wait_next()
 
 func interact() -> void:
+	click_sound.play()
 	is_on = not(is_on)
 	if is_on :
 		sprite_2d.texture = LEVER_ON
