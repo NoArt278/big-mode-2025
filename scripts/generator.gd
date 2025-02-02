@@ -47,6 +47,7 @@ func _on_tick_timer_timeout() -> void:
 	if charge <= 0 :
 		charge = 0
 		is_on = false
+		animated_sprite_2d.play("off")
 		generator.emit(is_on)
 		tick_timer.stop()
 
