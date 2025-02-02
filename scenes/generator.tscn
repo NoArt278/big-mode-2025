@@ -41,15 +41,6 @@ script = ExtResource("1_4fwpa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4qjgm")
 
-[node name="ChargeBar" type="ProgressBar" parent="."]
-modulate = Color(1, 1, 0, 1)
-offset_left = -48.0
-offset_top = -53.0
-offset_right = 49.0
-offset_bottom = -33.0
-value = 100.0
-show_percentage = false
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -63,6 +54,27 @@ modulate = Color(1, 1, 0, 1)
 scale = Vector2(0.120766, 0.120766)
 sprite_frames = SubResource("SpriteFrames_qwum8")
 animation = &"off"
+
+[node name="ChargeBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0, 1)
+offset_left = -48.6667
+offset_top = -47.3333
+offset_right = 48.3333
+offset_bottom = -30.3333
+theme_override_fonts/font = ExtResource("2_mku76")
+theme_override_font_sizes/font_size = 12
+value = 100.0
+show_percentage = false
+
+[node name="ChargeLabel" type="Label" parent="ChargeBar"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -18.0
+offset_right = 66.0
+offset_bottom = 5.0
+theme_override_fonts/font = ExtResource("2_mku76")
+theme_override_font_sizes/font_size = 12
+text = "100"
 
 [node name="InteractLabel" type="Label" parent="."]
 visible = false

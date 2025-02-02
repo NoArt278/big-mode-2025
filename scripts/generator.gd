@@ -8,6 +8,7 @@ class_name Generator
 @onready var upgrade_screen: Control = $"../UpgradeScreen"
 @onready var fuel_upgrade: Button = $"../UpgradeScreen/FuelUpgrade"
 @onready var generator_upgrade: Button = $"../UpgradeScreen/GeneratorUpgrade"
+@onready var charge_label: Label = $ChargeBar/ChargeLabel
 var max_charge: float = 100
 var deplete_speed: float = 3
 var is_on: bool = false
@@ -38,12 +39,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		charge += fuel_refill_charge
 		charge = min(charge, max_charge)
 		charge_bar.value = charge
+		charge_label.text = str(charge)
 		area.get_parent().get_parent().holdingFuel = false
 		area.get_parent().queue_free()
 
 func _on_tick_timer_timeout() -> void:
 	charge -= deplete_speed
 	charge_bar.value = charge
+	charge_label.text = str(charge)
 	if charge <= 0 :
 		charge = 0
 		is_on = false
@@ -54,6 +57,7 @@ func _on_tick_timer_timeout() -> void:
 func reset() -> void:
 	charge = max_charge
 	charge_bar.value = charge
+	charge_label.text = str(charge)
 
 func show_upgrades() -> void:
 	fuel_upgrade.text = "+" + str(5 + 5 * (fuel_level - 1)) + " on fuel refill"

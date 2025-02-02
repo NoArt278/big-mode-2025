@@ -1,14 +1,60 @@
-[gd_scene load_steps=7 format=3 uid="uid://on0g30s2p8ld"]
+[gd_scene load_steps=12 format=3 uid="uid://on0g30s2p8ld"]
 
 [ext_resource type="Script" path="res://scripts/grid_lever.gd" id="1_rn0hj"]
 [ext_resource type="Texture2D" uid="uid://deihad86xcq3" path="res://assets/lever_off.png" id="2_bwuoy"]
 [ext_resource type="FontFile" uid="uid://rnmua5wxwaqg" path="res://assets/Kubeon-Mono Bold.otf" id="3_5va48"]
+
+[sub_resource type="Animation" id="Animation_smi3a"]
+resource_name = "blink"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.766667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_syxwp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvtld"]
+_data = {
+"RESET": SubResource("Animation_syxwp"),
+"blink": SubResource("Animation_smi3a")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7r26"]
 size = Vector2(60, 105)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxjvg"]
 size = Vector2(79, 152)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xqdp0"]
+font = ExtResource("3_5va48")
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_fnvdb"]
+font = ExtResource("3_5va48")
+font_size = 14
 
 [sub_resource type="LabelSettings" id="LabelSettings_guckp"]
 font = ExtResource("3_5va48")
@@ -17,6 +63,11 @@ font_size = 10
 [node name="GridLever" type="StaticBody2D"]
 process_mode = 1
 script = ExtResource("1_rn0hj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jvtld")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.055, 3.701)
@@ -50,32 +101,35 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "0"
+label_settings = SubResource("LabelSettings_xqdp0")
 horizontal_alignment = 1
 
 [node name="PowerReqBar" type="ProgressBar" parent="PowerReqLabel"]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 0
 offset_left = -25.0
-offset_top = -20.0
+offset_top = -25.0
 offset_right = 54.0
-offset_bottom = -1.0
+offset_bottom = 2.0
+theme_override_fonts/font = ExtResource("3_5va48")
+theme_override_font_sizes/font_size = 12
 max_value = 1.0
-show_percentage = false
 
 [node name="CurrPowLabel" type="Label" parent="."]
-offset_left = -69.0
+offset_left = -67.0
 offset_top = 57.0
-offset_right = -29.0
-offset_bottom = 80.0
+offset_right = -27.0
+offset_bottom = 84.0
 text = "0"
+label_settings = SubResource("LabelSettings_fnvdb")
 horizontal_alignment = 1
 
 [node name="CurrPowBar" type="ProgressBar" parent="CurrPowLabel"]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 0
-offset_left = 10.0
+offset_left = 9.0
 offset_top = -114.0
-offset_right = 31.0
+offset_right = 30.0
 offset_bottom = -1.0
 allow_greater = true
 fill_mode = 3

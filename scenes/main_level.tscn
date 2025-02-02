@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc1023apsbo2g"]
+[gd_scene load_steps=13 format=3 uid="uid://cc1023apsbo2g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
 [ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
-[ext_resource type="Texture2D" uid="uid://bfl0jelj3amxc" path="res://assets/speaker.png" id="2_ct6ea"]
 [ext_resource type="PackedScene" uid="uid://qfdnvc4txd3c" path="res://scenes/player.tscn" id="3_vtta8"]
 [ext_resource type="AudioStream" uid="uid://dhmt34cw7mos1" path="res://assets/trippy_toe.mp3" id="4_0b2b4"]
 [ext_resource type="PackedScene" uid="uid://bwbaw6bp8fhi0" path="res://scenes/generator.tscn" id="6_3wfg3"]
@@ -36,11 +35,6 @@ texture = ExtResource("6_32qcs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
 position = Vector2(574, 146)
 shape = SubResource("RectangleShape2D_8sqqq")
-
-[node name="Speaker" type="Sprite2D" parent="Background"]
-position = Vector2(69.082, 43.045)
-scale = Vector2(0.245276, 0.245276)
-texture = ExtResource("2_ct6ea")
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 3

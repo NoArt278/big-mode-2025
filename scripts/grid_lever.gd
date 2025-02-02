@@ -16,6 +16,7 @@ var tol_time: float = 20
 @onready var power_req_bar: ProgressBar = $PowerReqLabel/PowerReqBar
 @onready var curr_pow_bar: ProgressBar = $CurrPowLabel/CurrPowBar
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 const LEVER_OFF = preload("res://assets/lever_off.png")
 const LEVER_ON = preload("res://assets/lever_on.png")
 
@@ -70,6 +71,7 @@ func wait_next() -> void:
 func _on_power_req_timer_timeout() -> void:
 	power_req = 0
 	power_req_label.text = str(power_req)
+	power_req_bar.value = 0
 	wait_next()
 
 func _on_tolerance_timer_timeout() -> void:
@@ -79,6 +81,11 @@ func _on_wait_timer_timeout() -> void:
 	next_pow_req()
 
 func _process(_delta: float) -> void:
-	power_req_bar.value = (req_time - power_req_timer.time_left) / req_time
+	if power_req > 0 :
+		power_req_bar.value = (req_time - power_req_timer.time_left) / req_time
 	if not(tolerance_timer.is_stopped()) :
 		tolerance_bar.value = tolerance_timer.time_left / tol_time
+		if tolerance_timer.time_left < 4 :
+			animation_player.play("blink")
+	else :
+		animation_player.stop()
