@@ -83,7 +83,7 @@ func _on_wait_timer_timeout() -> void:
 	next_pow_req()
 
 func _process(_delta: float) -> void:
-	if power_req > 0 :
+	if power_req > 0 and power_req_timer.time_left > 0 :
 		power_req_bar.value = (req_time - power_req_timer.time_left) / req_time
 	if not(tolerance_timer.is_stopped()) :
 		tolerance_bar.value = tolerance_timer.time_left / tol_time

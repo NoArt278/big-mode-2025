@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc1023apsbo2g"]
+[gd_scene load_steps=15 format=3 uid="uid://cc1023apsbo2g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pbpcb"]
 [ext_resource type="Script" path="res://scripts/grid_manager.gd" id="2_36q0b"]
@@ -21,6 +21,9 @@ font_size = 42
 [sub_resource type="LabelSettings" id="LabelSettings_kvstb"]
 font = ExtResource("8_xavcb")
 font_size = 32
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_epxwg"]
+distance = -652.0
 
 [node name="MainLevel" type="Node2D"]
 
@@ -476,6 +479,11 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("8_xavcb")
 text = "+20 Generator 
 charge"
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+shape = SubResource("WorldBoundaryShape2D_epxwg")
 
 [connection signal="timeout" from="GameManager/GameTimer" to="GameManager" method="_on_game_timer_timeout"]
 [connection signal="pressed" from="MainMenu/StartBtn" to="GameManager" method="_on_start_btn_pressed"]
