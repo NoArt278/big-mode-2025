@@ -147,7 +147,7 @@ offset_right = 91.5
 offset_bottom = 49.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "TITLE"
+text = "CRISIS DISTRIB"
 label_settings = SubResource("LabelSettings_jrsoo")
 
 [node name="Tutorial" type="Control" parent="."]
@@ -211,7 +211,7 @@ offset_bottom = 213.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "- The power distribution system in your local power plant has died !
-- You need to manually distribute power by switching power levers for each area.
+- You need to manually distribute power by switching power levers.
 - You have 100 power charge that will be distributed evenly to all active levers.
 - Each lever will have changing power requirements for random durations.
 - If a lever doesn't get enough power for too long, it's game over.
