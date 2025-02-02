@@ -217,7 +217,7 @@ text = "- The power distribution system in your local power plant has died !
 - If a lever doesn't get enough power for too long, it's game over.
 - You can turn on the generator on the bottom right to get an extra 50 power charge to distribute.
 - The generator must be refueled using the fuel from bottom left.
-- Survive as long as you can !
+- Survive as many days as you can !
 "
 autowrap_mode = 2
 
@@ -304,7 +304,7 @@ text = "Current power bar <-"
 autowrap_mode = 2
 
 [node name="GridLever" parent="Tutorial" instance=ExtResource("10_xeqrg")]
-position = Vector2(777.125, 254)
+position = Vector2(785.32, 254)
 scale = Vector2(1.5, 1.5)
 collision_layer = 8
 collision_mask = 8

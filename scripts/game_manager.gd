@@ -31,7 +31,7 @@ func start_game() -> void:
 	game_timer.start()
 
 func game_over() -> void:
-	end_text.text = "YOU LOSE"
+	end_text.text = "GAME OVER"
 	retry_button.text = "BACK TO MAIN"
 	Globals.curr_day = 1
 	end_screen.visible = true
